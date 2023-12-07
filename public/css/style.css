@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body {
+    background-color: #11252E;
+
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+}
+.container {
+    padding: 0rem 1rem;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0.3rem !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    & a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+.menu{
+    display: none;
+}
+
+#head-box {
+    background-image: url(http://test.adminware.pl/wp-content/uploads/2023/11/cardano-blockchain-platform-1-1024x576.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 44rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10rem;
+}
+.main-box {
+    margin: auto;
+    text-align: center;
+    & h1 {
+        font-size: 2.8rem;
+        font-weight: 600;
+        line-height: 4rem;
+    }
+    & p {
+        font-size: 1.3rem;
+        line-height: 3rem;
+    }
+}
+.buttons > a > button {
+    margin: 0.8rem;
+}
+.button {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  padding: 1.25rem 1.5rem;
+}
+.button-second {
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  padding: 1.25rem 1.5rem;
+}
+.blog-box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+.blog-container:nth-child(2)>.blog-box,.blog-container:nth-child(4)>.blog-box {
+    flex-direction: column-reverse;
+}
+.blog-container:nth-child(2),.blog-container:nth-child(4), .read-more-container {
+    background-color: #0E313E;
+}
+
+.blog-image > img {
+    width: 100%;
+    height: auto;
+}
+.blog-text {
+    padding: 1rem;
+    & h2 {
+        font-size: 2rem;
+    }
+    & p {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+.read-more {
+    text-align: end;
+    padding: 1rem;
+}
+#work {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+#work >.work-container >.container {
+    padding: 2rem;
+    & h2 {
+        padding-top: 2rem;
+        font-size: 2rem;
+    }
+}
+.work-box {
+    width: 100%;
+    margin-top: 2rem;
+    height: 27rem;
+    background-image: url(http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img04.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: end;
+    & a {
+        padding: 1rem;
+    }
+}
+.img2 {
+    background-image: url(http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img05.jpg);
+}
+.services-container {
+    background-color: #1b3846;
+    margin: 1rem;
+}
+.services-box {
+    padding: 1rem;
+    padding-top: 2.5rem;
+    & img {
+        display: flex;
+        padding: 1rem;
+    }
+    & h3 {
+        margin: 1rem 0rem;
+    }
+}
+.services-box:last-child {
+    padding-bottom: 5rem;
+}
+.services-footer {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    & h2 {
+        font-size: 2.5rem;
+    }
+    & p {
+        padding: 1rem;
+    }
+}
+.socials {
+    text-align: center;
+    & a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 2rem;
+        padding: 1rem;
+    }
+}
+.copyright {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+
+@media (min-width: 768px) {
+    nav{
+        align-items: center;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    .menu {
+        display: block;
+        padding: 1rem;
+        padding-right: 0;
+    }
+    .menu > ul {
+        display: flex;
+        list-style-type: none;
+        & a {
+            color: #fff;
+            transition: all 0.3s;
+        }
+        & li {
+
+            padding-left: 1.2rem;
+            & i {
+                font-size: 2rem;
+            }
+        }
+    }
+    .menu > ul > a:hover {
+        color: #fa6400;
+    }
+    .blog-box {
+        display: flex;
+        flex-direction: row;
+    }
+    .blog-image > img {
+        width: 400px;
+        height: auto;
+    }
+    .blog-container:nth-child(2)>.blog-box,.blog-container:nth-child(4)>.blog-box {
+        flex-direction: row-reverse;
+    }
+}
+@media (min-width: 1024px) { 
+    .container {
+        margin: auto;
+        max-width: 80%;
+    }
+    .menu > ul > a > li {
+        padding-left: 2rem;
+    }
+    .main-box {
+        width: 60%;
+    }
+    .blog-box {
+        align-items: center;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+@media (min-width: 1260px ) {
+    .container {
+        max-width: 70%;
+    }
+    /* .menu > ul > a > li {
+        padding-left: 2rem;
+    } */
+    .work-flex {
+        display: flex;
+    }
+    .work-box {
+        width: 50%;
+    }
+    .work-box:first-child {
+        margin-right: 2rem;
+    }
+    #work >.work-container >.container {
+        padding: 0;
+    }
+    .services-container {
+        display: flex;
+    }
+}

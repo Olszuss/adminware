@@ -1,0 +1,67 @@
+<%- include("partials/header"); -%>
+
+
+<section id="blog">
+    <% for(let i=posts.length-1 ; i>=posts.length-5; i--){ %>
+        <%const post = posts[i]%>
+    <div class="blog-container">
+        <div class="blog-box container">
+            <div class="blog-image">
+                <img src="<%=post.imageUrl%>" alt="Blog-Image">
+            </div>
+            <div class="blog-text">
+                <h2><%=post.title %></h2>
+                <p><%=post.content.substring(0,200) + " ..."%></p>
+                <a href="/posts/<%=post._id%>#post"><button class="button">Learn More</button></a>
+            </div>
+        </div>
+    </div>
+    <% }; %>
+<div class="read-more-container">
+    <div class="read-more container">
+        <a href="#"><button class="button">All posts</button></a>
+    </div>
+</div>
+</section>
+<section id="work">
+    <div class="work-container">
+    <div class="container">
+        <h2>Featured Work</h2>
+        <div class="work-flex">
+        <div class="work-box">
+            <a href="#"><button class="button-second">Details</button></a>
+        </div>
+        <div class="work-box img2">
+            <a href="#"><button class="button-second">Details</button></a>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+<section id="services">
+    <div class="container services-container">
+        <div class="services-box">
+            <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img01.svg" alt="">
+            <h3>Lorem, ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+        </div>
+        <div class="services-box">
+         <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img02.svg" alt=""> 
+         <h3>Lorem, ipsum dolor.</h3>               
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+        </div>
+        <div class="services-box">
+            <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img03.svg" alt="">
+            <h3>Lorem, ipsum dolor.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+        </div>
+    </div>
+    <div class="services-footer container">
+        <h2>Let's work together on your next project</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi labore maiores nemo corrupti id doloremque cumque similique ratione in, nihil atque provident, facilis nobis incidunt deleniti earum rem quia iste.</p>
+        <a href="#"><button class="button">Learn More</button></a>
+    </div>
+</section>
+
+
+<%- include("partials/footer"); -%>
