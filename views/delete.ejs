@@ -1,0 +1,21 @@
+<%- include("partials/header"); -%>
+
+<% posts.forEach((post)=>{ %>
+    <hr />
+    <h1><%=post.title %></h1>
+    <p>
+        <%if (post.content.length > 200){ %>
+        <%=post.content.substring(0,200) + " ..."%><a href="/posts/<%=post._id%>">Read More</a>
+    <% }else{ %>
+        <%=post.content%>
+        <%}%>
+    </p>
+    <img src="<%=post.imageUrl%>" alt="" width="300px" height="300px">
+    <form action="/admin/deletepost" method="post">
+        <input type="hidden" name="postId" value="<%=post._id%>">
+    <button type="submit" class="button">Usuń post</button>
+    </form>
+    <hr/>
+<% }); %>
+
+<%- include("partials/footer"); -%>

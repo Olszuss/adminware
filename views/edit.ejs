@@ -1,0 +1,19 @@
+<%- include("partials/header"); -%>
+
+<% posts.forEach((post)=>{ %>
+    <hr />
+    <h1><%=post.title %></h1>
+    <p>
+        <%if (post.content.length > 200){ %>
+        <%=post.content.substring(0,200) + " ..."%><a href="/posts/<%=post._id%>">Read More</a>
+    <% }else{ %>
+        <%=post.content%>
+        <%}%>
+    </p>
+    <img src="<%=post.imageUrl%>" alt="" width="300px" height="300px">
+    <a href="/admin/<%=post._id%>"><button class="button">Edytuj post</button></a>
+</form>
+    <hr/>
+<% }); %>
+
+<%- include("partials/footer"); -%>

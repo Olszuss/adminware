@@ -1,0 +1,19 @@
+<%- include("partials/header"); -%>
+
+<h1>Edytuj post</h1>
+<form action="/admin/editpost" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="postTitle" autocomplete="off" value="<%=title%>">
+    </div>
+    <div class="form-group">
+        <label>Post</label>
+        <textarea name="postArea" class="form-control" cols="30" rows="10"><%=content%></textarea>
+    </div>
+    <input type="hidden" name="postId" value="<%=postId%>">
+        <button type="submit" class="btn btn-primary">Publish</button>
+
+</form>
+
+
+<%- include("partials/footer"); -%>
