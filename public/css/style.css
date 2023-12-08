@@ -99,13 +99,12 @@ nav {
 .blog-container:nth-child(2),.blog-container:nth-child(4), .read-more-container {
     background-color: #0E313E;
 }
-
 .blog-image > img {
     width: 100%;
     height: auto;
 }
 .blog-text {
-    width: 80%;
+    width: 100%;
     padding: 1rem;
     & h2 {
         font-size: 2rem;
@@ -113,6 +112,7 @@ nav {
     & p {
         padding-top: 2rem;
         padding-bottom: 2rem;
+        text-align: left;
     }
 }
 .read-more {
@@ -139,6 +139,8 @@ nav {
     background-position: center;
     display: flex;
     align-items: end;
+    transition: background-image 0.2s ease-in-out;
+    -webkit-transition: background-image 0.2s ease-in-out;
     & a {
         padding: 1rem;
     }
@@ -184,13 +186,43 @@ nav {
         padding: 1rem;
     }
 }
+#admin > .container >  .socials {
+    margin-bottom: 8rem;
+    & ul {
+        list-style-type: none;
+        & li {
+            padding: 1rem;
+        }
+    }
+}
 .copyright {
     padding: 1rem;
     text-align: center;
     font-size: 0.8rem;
 }
-
-
+form {
+    margin: auto;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #949596a1;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 1rem;
+    width: 30%;
+    & input , textarea {
+        padding: 0.5rem;
+        margin: 1rem;
+    }
+    & button {
+        margin: 1rem;
+    }
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
 @media (min-width: 768px) {
     nav{
         align-items: center;
@@ -225,9 +257,15 @@ nav {
         display: flex;
         flex-direction: row;
     }
+    .blog-image {
+        width: 50%;
+    }
     .blog-image > img {
-        width: 400px;
+        width: 300px;
         height: auto;
+    }
+    .blog-text {
+        width: 50%;
     }
     .blog-container:nth-child(2)>.blog-box,.blog-container:nth-child(4)>.blog-box {
         flex-direction: row-reverse;
@@ -248,6 +286,10 @@ nav {
         align-items: center;
         padding-top: 3rem;
         padding-bottom: 3rem;
+    }
+    .blog-image > img {
+        width: 500px;
+        height: 500px;
     }
 }
 @media (min-width: 1260px ) {

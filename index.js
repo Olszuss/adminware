@@ -73,14 +73,14 @@ app.get("/posts/:postId", (req,res)=>{
     })
 
   });
-
+//////////////////////////////////////////////////////////////////
   //Admin page
   app.get("/admin", requireAuth, (req,res)=>{
-    res.render("admin" , {title:"Admin"});
+    res.render("admin/admin" , {title:"Admin"});
   });
 //Compose page
   app.get('/admin/compose', requireAuth,  (req,res)=>{
-    res.render('compose' , {title:"Utwórz"});
+    res.render('admin/compose' , {title:"Utwórz"});
   });
   app.post("/compose", requireAuth, (req,res)=>{
       const { image } = req.files;
@@ -93,15 +93,15 @@ app.get("/posts/:postId", (req,res)=>{
       imageUrl: ('/upload/' + image.name)
     });
     post.save();
-    res.render('admin', {warning: "Pomyślnie dodałeś post."})
+    res.render('admin/admin', {warning: "Pomyślnie dodałeś post."})
   });
 //Delete page
 app.get('/admin/deletepost' , requireAuth ,(req,res)=>{ 
   Post.find({})
   .then((foundPost)=>{
-    res.render("delete", {
+    res.render("admin/delete", {
       posts: foundPost,
-      title: "Delete"
+      title: "Usuń"
     });
   });
 });
@@ -109,7 +109,7 @@ app.post('/admin/deletepost', requireAuth ,async (req,res)=>{
    try {
     await Post.deleteOne({ _id : req.body.postId })
     .then(()=> {
-      res.render("admin", {
+      res.render("admin/admin", {
         warning: "Pomyślnie usunąłeś post!"
       })
     })
@@ -122,9 +122,9 @@ app.post('/admin/deletepost', requireAuth ,async (req,res)=>{
 app.get('/admin/editpost', requireAuth ,(req,res)=>{
   Post.find({})
   .then((foundPost)=>{
-    res.render("edit", {
+    res.render("admin/edit", {
       posts: foundPost,
-      title: "Edit"
+      title: "Edytuj"
     });
   });
 });
@@ -133,7 +133,7 @@ app.get("/admin/:postId", requireAuth, (req,res)=>{
   const requestedPostId = req.params.postId;
   Post.findOne({_id: requestedPostId})
   .then((post)=>{
-    res.render("editpost", {
+    res.render("admin/editpost", {
       title: post.title,
       content: post.content,
       image: post.imageUrl,
@@ -146,7 +146,7 @@ app.post('/admin/editpost', requireAuth ,async (req,res)=>{
    await Post.updateOne({ _id : req.body.postId },
     {title: req.body.postTitle, content: req.body.postArea})
    .then(()=> {
-     res.render("admin", {
+     res.render("admin/admin", {
        warning: "Pomyślnie edytowałeś post!"
      })
    })
@@ -158,7 +158,7 @@ app.post('/admin/editpost', requireAuth ,async (req,res)=>{
 
 //Login page
 app.get("/login", function (req, res) {
-  res.render("login");
+  res.render("admin/login");
 });
 app.post("/login", async function(req, res){
     try {
@@ -167,7 +167,7 @@ app.post("/login", async function(req, res){
           const result = req.body.password === user.password;
           if (result) {
             req.session.userId = user;
-            res.render("admin");
+            res.render("admin/admin");
           } else {
             res.status(400).json({ error: "Hasło nieprawidłowe!" });
           }
@@ -185,6 +185,11 @@ app.get("/logout", function (req, res) {
         res.redirect('/');
       });
 });
+//404 
+app.get('*', function(req, res){
+  res.render('404', {title: "Not Found"});
+});
+
 
 app.listen(5050, function() {
     console.log("Server started on port 5050");
