@@ -288,8 +288,8 @@ form {
         padding-bottom: 3rem;
     }
     .blog-image > img {
-        width: 500px;
-        height: 500px;
+        width: 100%;
+        height: auto;
     }
 }
 @media (min-width: 1260px ) {
