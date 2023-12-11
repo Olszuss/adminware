@@ -2,8 +2,9 @@
 
 
 <section id="blog">
-    <% for(let i=posts.length-1 ; i>=posts.length-5; i--){ %>
-        <%const post = posts[i]%>
+    <% if (posts.length <5) { %>
+        <% posts.reverse() %>
+        <% posts.forEach(post => {%>
     <div class="blog-container">
         <div class="blog-box container">
             <div class="blog-image">
@@ -16,7 +17,24 @@
             </div>
         </div>
     </div>
-    <% }; %>
+       <% }); %>
+    <%} else {%>
+        <% for(let i=posts.length-1 ; i>=posts.length-5; i--){ %>
+            <%const post = posts[i]%>
+        <div class="blog-container">
+            <div class="blog-box container">
+                <div class="blog-image">
+                    <img src="<%=post.imageUrl%>" alt="Blog-Image">
+                </div>
+                <div class="blog-text">
+                    <h2><%=post.title %></h2>
+                    <p><%=post.content.substring(0,250) + " ..."%></p>
+                    <a href="/posts/<%=post._id%>#post"><button class="button">Read More</button></a>
+                </div>
+            </div>
+        </div>
+        <% }; %>
+        <%}%>
 <div class="read-more-container">
     <div class="read-more container">
         <a href="#"><button class="button">All posts</button></a>

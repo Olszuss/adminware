@@ -1,9 +1,10 @@
-const express = require('express');
-const ejs = require('ejs');
+const express = require("express");
+const ejs = require("ejs");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const fileUpload = require("express-fileupload");
+const fs = require("fs")
 const bodyParser = require("body-parser");
 const _ = require("lodash");
 const mongoose = require("mongoose");
@@ -34,19 +35,20 @@ const postSchema = {
     title: String,
     content: String,
     imageUrl: String,
-    date: Date
+    date: Date,
+    deleted: Boolean
   }  
 const Post = mongoose.model("Post", postSchema);
 const requireAuth = (req, res, next) => {
   if (req.session.userId) {
-      next(); // User is authenticated, continue to next middleware
+      next();
   } else {
-      res.redirect('/login'); // User is not authenticated, redirect to login page
+      res.redirect('/login');
   }
 }
 //home page
 app.get("/", (req,res)=>{ 
-    Post.find({})
+    Post.find({ deleted: false })
     .then((foundPost)=>{
       res.render("index", {
         posts: foundPost,
@@ -55,7 +57,7 @@ app.get("/", (req,res)=>{
     });
   });
 
-  //contact page
+//contact page
 app.get('/contact', (req, res) => {
     res.render('contact', {title:"Kontakt"});
 });
@@ -80,20 +82,34 @@ app.get("/posts/:postId", (req,res)=>{
   });
 //Compose page
   app.get('/admin/compose', requireAuth,  (req,res)=>{
-    res.render('admin/compose' , {title:"Utwórz"});
+    res.render('admin/compose' , {
+      title:"Utwórz",
+      formTitle: req.body.postTitle,
+      content: req.body.postArea
+    });
   });
   app.post("/compose", requireAuth, (req,res)=>{
       const { image } = req.files;
-      if (!image) return res.sendStatus(400);
-      image.mv(__dirname + '/public/' + '/upload/' + image.name);
-    const post = new Post({
-      title: req.body.postTitle,
-      content: req.body.postArea,
-      date: Date.now(),
-      imageUrl: ('/upload/' + image.name)
-    });
-    post.save();
-    res.render('admin/admin', {warning: "Pomyślnie dodałeś post."})
+      const post = new Post({
+        title: req.body.postTitle,
+        content: req.body.postArea,
+        date: Date.now(),
+        imageUrl: ('/upload/' + image.name),
+        deleted: false
+      });
+      if (!image) return res.render('admin/admin',{warning: 'Nie dodałeś zdjęcia!'});
+      if (fs.existsSync(__dirname + '/public/' + '/upload/' + image.name)){
+        res.render('admin/compose', {
+          warning: "Plik o takiej nazwie już istnieje!",
+          formTitle: req.body.postTitle,
+          content: req.body.postArea
+        })
+      } else {
+        image.mv(__dirname + '/public/' + '/upload/' + image.name);
+        post.save();
+        res.render('admin/admin', {warning: "Pomyślnie dodałeś post."})
+      }
+
   });
 //Delete page
 app.get('/admin/deletepost' , requireAuth ,(req,res)=>{ 
@@ -105,19 +121,26 @@ app.get('/admin/deletepost' , requireAuth ,(req,res)=>{
     });
   });
 });
-app.post('/admin/deletepost', requireAuth ,async (req,res)=>{
-   try {
-    await Post.deleteOne({ _id : req.body.postId })
-    .then(()=> {
-      res.render("admin/admin", {
-        warning: "Pomyślnie usunąłeś post!"
-      })
-    })
-    }
-    catch (e) {
-    console.log(e);
- }
-});
+app.post('/admin/deletepost', requireAuth ,(req,res)=>{
+if( req.body.postDelete === "true" ) {
+       Post.updateOne({ _id : req.body.postId },
+        {deleted: false})
+       .then(()=> {
+         res.render("admin/admin", {
+          title: "Admin",
+          warning: "Pomyślnie przywróciłeś post!"
+         })
+       })
+    } else{
+       Post.updateOne({ _id : req.body.postId },
+        {deleted: true})
+       .then(()=> {
+         res.render("admin/admin", {
+          title: "Admin",
+          warning: "Pomyślnie usunąłeś post!"
+         })
+       })
+    }});
 //Edit page 
 app.get('/admin/editpost', requireAuth ,(req,res)=>{
   Post.find({})
