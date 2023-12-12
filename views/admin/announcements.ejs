@@ -1,0 +1,32 @@
+<%- include("../partials/header"); -%>
+
+<section id="admin">
+    <h1><%=warning%></h1>
+<div class="container">
+    <h2>Aktualne ogłoszenie:</h2>
+    <div class="announcements-box">
+        <% announce.forEach(announce => {%>
+
+        <h2><%=announce.title%></h2>
+        <p><%=announce.content%></p>
+        <p><%=announce.date.toLocaleDateString();%></p>
+    </div>
+    <%});%>
+<hr>
+<div class="admin">
+    <ul>
+        <li><a href="/admin/announcements/new"><button class="button">Nowe ogłoszenie</button></a></li>
+
+        <li><a href="/admin/announcements/history"><button class="button">Historia</button></a></li>
+    </ul>
+    <a href="/admin"><button class="button-second">Wróć</button></a>
+
+    <a href="/logout"><button class="button-second">Wyloguj</button></a>
+</div>
+</div>
+</section>
+
+
+
+
+<%- include("../partials/footer"); -%>

@@ -14,7 +14,6 @@ body {
   padding: 0rem 1rem;
 }
 #header {
-  display: f;
   position: fixed;
   background-color: #11252e;
 }
@@ -100,7 +99,36 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
+}
+.container > h2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 2rem;
+}
+.announcements-box {
+  padding: 2rem;
+  /* border: 1px solid #e1e1e1;
+  background-color: #1b3846;
+  border-radius: 4px; */
+  & h2 {
+    color: #ff5252;
+    margin-bottom: 2rem;
+  }
+  & p:last-child {
+    margin-top: 2rem;
+    text-align: end;
+  }
+}
+.history-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkbox-admin {
+  display: flex;
+  align-items: center;
 }
 .main-box {
   margin: auto;
@@ -261,6 +289,17 @@ nav {
     }
   }
 }
+.admin > ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  & li {
+    padding: 1rem
+  }
+}
+.admin {
+text-align: end;
+}
 .copyright {
   padding: 1rem;
   text-align: start;
@@ -285,6 +324,12 @@ form {
   & button {
     margin: 1rem;
   }
+}
+.history-form {
+  background-color: inherit;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .form-group {
   display: flex;

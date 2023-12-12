@@ -38,8 +38,15 @@ const postSchema = {
     imageUrl: String,
     date: Date,
     deleted: Boolean
-  }  
+  } ;
+const announceSchema = {
+  title: String,
+  content: String,
+  date: Date,
+  active: Boolean
+}
 const Post = mongoose.model("Post", postSchema);
+const Announce = mongoose.model("Announcement", announceSchema);
 const requireAuth = (req, res, next) => {
   if (req.session.userId) {
       next();
@@ -51,11 +58,17 @@ const requireAuth = (req, res, next) => {
 app.get("/", (req,res)=>{ 
     Post.find({ deleted: false })
     .then((foundPost)=>{
-      res.render("index", {
-        posts: foundPost,
-        title: "Strona główna"
-      });
-    });
+      return post = foundPost
+    })
+    Announce.find({ active: true })
+    .then((foundAnnouncement)=>{
+      
+      res.render('index', {
+        title: "Strona główna",
+        posts: post,
+        announce: foundAnnouncement
+      })
+    })
   });
 
 //contact page
@@ -81,6 +94,53 @@ app.get("/posts/:postId", (req,res)=>{
   app.get("/admin", requireAuth, (req,res)=>{
     res.render("admin/admin" , {title:"Admin"});
   });
+//Anouncement page
+app.get('/admin/announcements', requireAuth, (req,res)=>{
+  Announce.find({active:true})
+  .then((announcement)=>{
+  res.render('admin/announcements', {
+    title: "Ogłoszenia",
+    announce: announcement
+  });
+});
+});
+app.get('/admin/announcements/new', requireAuth, (req,res)=>{
+  res.render('admin/newannouncements', {
+    title: "Ogłoszenia"
+  });
+});
+app.post('/admin/announcements/new', requireAuth, async (req,res)=>{
+  let announceActive;
+  if (req.body.announceActive === "yes" ){
+    announceActive = true;
+    await Announce.updateMany({active: true}, {active: false});
+  }else{
+    announceActive= false;
+  }
+  const announce = new Announce({
+    title: req.body.announceTitle,
+    content: req.body.announceArea,
+    date: Date.now(),
+    active: announceActive
+  });
+
+  announce.save();
+  res.render('admin/admin', {warning: "Pomyślnie dodałeś ogłoszenie."})
+});
+app.get('/admin/announcements/history', requireAuth, (req,res)=>{
+    Announce.find()
+    .then((announcement)=>{
+      res.render('admin/historyannouncements', {
+        title: "Historia",
+        announce: announcement
+      });
+    });
+});
+app.post('/admin/announcements/history', requireAuth, async (req,res)=>{
+  await Announce.updateMany({active: true}, {active: false});
+  await Announce.updateOne({ _id : req.body.announceId },{active: true});
+  res.render('admin/admin', {warning: "Pomyślnie przywróciłeś ogłoszenie."})
+});
 //Compose page
   app.get('/admin/compose', requireAuth,  (req,res)=>{
     res.render('admin/compose' , {
@@ -90,6 +150,17 @@ app.get("/posts/:postId", (req,res)=>{
     });
   });
   app.post("/compose", requireAuth, (req,res)=>{
+      if (req.files == null) {
+        const post = new Post({
+          title: req.body.postTitle,
+          content: req.body.postArea,
+          date: Date.now(),
+          imageUrl: "https://www.e-kern.com/fileadmin/user_upload/Images_Allgemein/Slider/kern_it_85103537_1920x1080px.jpg",
+          deleted: false
+        });
+        post.save();
+        res.render('admin/admin', {warning: "Pomyślnie dodałeś post."})
+      } else {
       const { image } = req.files;
       const post = new Post({
         title: req.body.postTitle,
@@ -109,7 +180,7 @@ app.get("/posts/:postId", (req,res)=>{
         image.mv(__dirname + '/public/' + '/upload/' + image.name);
         post.save();
         res.render('admin/admin', {warning: "Pomyślnie dodałeś post."})
-      }
+      }}
 
   });
 //Delete page
@@ -190,7 +261,7 @@ app.post("/login", async function(req, res){
         if (user) {
           const result = req.body.password === user.password;
           if (result) {
-            req.session.userId = user;;
+            req.session.userId = user;
             res.render("admin/admin");
           } else {
             res.send("Invalid password")
@@ -209,6 +280,25 @@ app.get("/logout", function (req, res) {
         res.redirect('/');
       });
 });
+//register page 
+app.get("/register", function (req, res) {
+  res.render('register')
+});
+app.post("/register", function (req,res) {
+  let newUser = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+        console.log(err);
+    }
+    passport.authenticate("local")(req, res, function() {
+        // redirect user or do whatever you want
+    });
+ });
+});
+
 //404 
 app.get('*', function(req, res){
   res.render('404', {title: "Not Found"});

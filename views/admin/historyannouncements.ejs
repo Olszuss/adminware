@@ -1,0 +1,36 @@
+<%- include("../partials/header"); -%>
+
+
+<section id="admin">
+    <div class="container" style="display: flex; justify-content: end; margin-bottom: 2rem;">
+    <a href="/admin/announcements"><button class="button-second">Wróć</button></a>
+    </div>
+        <%announce.reverse() %>
+        <% announce.forEach(announce => {%>
+            <div class="container">
+            <hr>
+            <div class="history-container">
+                <div>
+                        <h2 style="color:#ff5252"><%=announce.title %></h2>
+                        <p><%=announce.content%></p>
+                    </div>
+                        <% if (announce.active === true) {%>
+                            <div class="active-history"><p style="padding: 1rem;margin: 1rem;background-color: #ff5252;">Ogłoszenie aktywne</p></div>
+                            <%}%>
+                            <% if (announce.active === false) {%>
+                                <div class="active-history">
+                                    <form class="history-form" action="/admin/announcements/history" method="post">
+                                        <input type="hidden" name="announceId" value= <%=announce._id %> >
+                                    <button class="button">Przywróc ogłoszenie</button>
+                                </form>
+                                </div>
+                                <%}%>
+    
+                    </div>
+                </div>
+               <% }); %>
+    </div>
+</section>
+
+
+<%- include("../partials/footer"); -%>

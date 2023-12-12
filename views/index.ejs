@@ -1,7 +1,21 @@
 <%- include("partials/header"); -%>
 
+<section id="announcements">
+    <div class="container">
+        <div class="announcements-box">
+            <% announce.forEach(announce => {%>
 
+            <h2><%=announce.title%></h2>
+            <p><%=announce.content%></p>
+            <p><%=announce.date.toLocaleDateString();%></p>
+        </div>
+        <%});%>
+ </div>
+</section>
 <section id="blog">
+    <div class="container">
+    <h2>Blog</h2>
+</div>
     <% if (posts.length <5) { %>
         <% posts.reverse() %>
         <% posts.forEach(post => {%>
