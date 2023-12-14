@@ -1,0 +1,39 @@
+<%- include("partials/header"); -%>
+
+<section id="blog">
+    <div class="container">
+        <h2>Blog</h2>
+ <% posts.reverse() %>
+ <h2>Najnowszy post</h2>
+        <div class="first-post">
+
+            <div>
+                <img src="<%=posts[0].imageUrl%>" alt="Post-image">
+            </div>
+            <div>
+                <p><%=posts[0].date.toLocaleDateString()%></p>
+                <h2><%=posts[0].title%></h2>
+                <p><%=posts[0].content.substring(0,800) + " ..."%></p>
+                <div><a href="/posts/<%=posts[0]._id%>#post"><button class="button">Czytaj więcej</button></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="post-container">
+            <% for(let i=1 ; i<posts.length; i++){ %>
+        <div class="post-box">
+            <%const post = posts[i]%>
+            <img src="<%=post.imageUrl%>" alt="post-image">
+            <p><%=post.date.toLocaleDateString()%></p>
+            <h3><%=post.title%></h3>
+            <p><%=post.content.substring(0,230) + " ..."%> <a href="/posts/<%=post._id%>#post">Czytaj więcej</a></p>
+        </div>
+            <%}%>
+    </div>
+</div>
+
+
+</section>
+
+
+<%- include("partials/footer"); -%>

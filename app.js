@@ -75,6 +75,17 @@ app.get("/", (req,res)=>{
 app.get('/contact', (req, res) => {
     res.render('contact', {title:"Kontakt"});
 });
+//blog page 
+app.get('/blog', (req, res) => {
+  Post.find({ deleted: false })
+    .then((foundPost)=>{
+      res.render('blog', {
+        title:"Blog",
+        posts: foundPost
+      });
+  })
+
+});
 //Post page
 app.get("/posts/:postId", (req,res)=>{
 
@@ -305,7 +316,7 @@ app.get('*', function(req, res){
 });
 
 
-app.listen(8080, function() {
-    console.log("Server started on port 8080");
+app.listen(8000, function() {
+    console.log("Server started on port 8000");
   });
   

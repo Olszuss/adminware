@@ -1,8 +1,18 @@
 <%- include("partials/header"); -%>
 
 <section id="post">
-    <h1><%=title%></h1>
-    <p><%=content%></p>
+    <div class="container">
+        <a href="/blog"><i class="fa-solid fa-arrow-left"></i> Wróć do postów</a>
+        <div class="post-header">
+        <h2><%=title%></h2>
+        </div>
+        <div class="post-image">
+        <img src="<%=image%>" alt="Post-image">
+        </div>
+            <p><%=content%></p>
+
+
+    </div>
 </section>
 
 <%- include("partials/footer"); -%>

@@ -1,7 +1,74 @@
 <%- include("partials/header"); -%>
 
 <section id="contact">
-    Work in process.
+    <div class="container">
+        <div class="contact-header">
+            <div>
+                <h2>Skontaktuj się</h2>
+            </div>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium vitae architecto quos autem sed nisi iusto, esse qui explicabo, veritatis omnis eius saepe porro quas necessitatibus impedit blanditiis doloremque repellendus est commodi excepturi corrupti soluta quam incidunt? Nostrum optio quasi, recusandae deserunt incidunt tempora quo vitae ut corporis. Voluptatem, repudiandae?</p>
+            </div>
+
+        </div>
+        <div class="contact-form-container">
+        <div class="contact-form-box">
+            <form class="contact-form" action="/contact" method="post">
+                <div>
+                    <div>
+                        <label>Imię *</label>
+                        <input type="text" name="first-name" placeholder="Podaj imię">
+                    </div>
+                    <div>
+                        <label>Nazwisko</label>
+                        <input type="text" name="last-name" placeholder="Podaj nazwisko">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>E-mail *</label>
+                        <input type="text" name="first-name" placeholder="Podaj e-mail">
+                    </div>
+                    <div>
+                        <label>Telefon</label>
+                        <input type="text" name="last-name" placeholder="Podaj numer tel.">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Temat *</label>
+                        <input type="text" name="first-name" placeholder="Podaj temat">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label>Wiadomość *</label>
+                        <textarea name="text" cols="30" rows="10" placeholder="Wpisz swoją wiadomość tutaj..."></textarea>
+                    </div>
+                </div>
+                <p style="font-size: 0.8rem;">* - pola wymagane</p>
+                <div>
+                    <button class="button">Wyślij wiadomość</button>
+                </div>
+            </form>
+        </div>
+        <div class="contact-profile">
+            <div class="contact-box">
+                <div>
+                <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                </div>
+                <p>mail@mail.pl</p>
+            </div>
+            <div class="contact-box">
+                <div>
+                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                </div>
+                <p>Profile społecznościowe</p>
+            </div>
+    </div>
+</div>
 </section>
 
 <%- include("partials/footer"); -%>
