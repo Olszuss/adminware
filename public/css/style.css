@@ -490,6 +490,7 @@ form {
 .contact-box > div > a:hover {
  color: #fa6400;
 }
+
 @media (min-width: 768px) {
   nav {
     align-items: center;
