@@ -8,6 +8,7 @@ const fileUpload = require("express-fileupload");
 const fs = require("fs")
 const bodyParser = require("body-parser");
 const _ = require("lodash");
+const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const User = require("./model/user");
 
@@ -19,7 +20,7 @@ app.use(express.static("public"));
 app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(require("express-session")({
-  secret: "28f8fe418b8479f90ef1ec89dc989e04",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
@@ -74,6 +75,42 @@ app.get("/", (req,res)=>{
 //contact page
 app.get('/contact', (req, res) => {
     res.render('contact', {title:"Kontakt"});
+});
+app.post('/contact', (req, res)=>{
+  console.log(req.body)
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+  const mail_option = {
+    from: process.env.EMAIL_USERNAME,
+    to: process.env.EMAIL_RECEIVES,
+    subject: req.body.subject,
+    html: 
+    `
+    <img src="">
+    <div style="text-align: center;">
+    <h1>Otrzymano nową wiadomość z formularza kontaktowego!</h1>
+    </div>
+    <h2>Wiadomość od ${req.body.first} ${req.body.last} </h2>
+    <h3>Mail: ${req.body.email}</h3>
+    <h3>Telefon: ${req.body.phone}</h3>
+    <h3>Temat: ${req.body.subject}
+    <h3>Wiadomość: </h3>
+    <p>${req.body.message}</p>
+    `,
+  };
+  transporter.sendMail(mail_option, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      res.redirect(`/`);
+    }
+  });
 });
 //blog page 
 app.get('/blog', (req, res) => {
@@ -316,7 +353,7 @@ app.get('*', function(req, res){
 });
 
 
-app.listen(8000, function() {
-    console.log("Server started on port 8000");
+app.listen(process.env.PORT, function() {
+    console.log("Server started on port 8080");
   });
   

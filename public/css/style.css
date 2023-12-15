@@ -197,6 +197,7 @@ nav {
   width: auto;
   max-height: 250px;
   max-width: 100%;
+  border-radius: 10px;
 }
 .blog-text {
   width: 100%;
@@ -359,6 +360,9 @@ form {
 }
 .post-box {
   margin-bottom: 2rem;
+}
+.post-box > p:last-child {
+  text-align: end;
 }
 .post-box > p > a{
   color: #fa6400;
