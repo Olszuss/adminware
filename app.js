@@ -13,7 +13,9 @@ const mongoose = require("mongoose");
 const User = require("./model/user");
 
 
+
 const app = express();
+const path = require("path");
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -132,7 +134,8 @@ app.get("/posts/:postId", (req,res)=>{
       res.render("post", {
         title: post.title,
         content: post.content,
-        image: post.imageUrl
+        image: post.imageUrl,
+        date: post.date
       });
     })
 
@@ -198,10 +201,11 @@ app.post('/admin/announcements/history', requireAuth, async (req,res)=>{
     });
   });
   app.post("/compose", requireAuth, (req,res)=>{
+    let content = req.body.postArea;
       if (req.files == null) {
         const post = new Post({
           title: req.body.postTitle,
-          content: req.body.postArea,
+          content: content,
           date: Date.now(),
           imageUrl: "https://www.e-kern.com/fileadmin/user_upload/Images_Allgemein/Slider/kern_it_85103537_1920x1080px.jpg",
           deleted: false
@@ -346,11 +350,17 @@ app.post("/register", function (req,res) {
     });
  });
 });
-
+app.get('/robots.txt', function (req, res) {
+  res.sendFile(path.join(__dirname, "/robots.txt"));
+});
+app.get("/sitemap.xml", function (req, res) {
+  res.sendFile(path.join(__dirname, "/sitemap.xml"));
+});
 //404 
 app.get('*', function(req, res){
   res.render('404', {title: "Not Found"});
 });
+
 
 
 app.listen(process.env.PORT, function() {

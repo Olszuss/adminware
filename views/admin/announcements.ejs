@@ -8,7 +8,7 @@
         <% announce.forEach(announce => {%>
 
         <h2><%=announce.title%></h2>
-        <p><%=announce.content%></p>
+        <p><%-announce.content%></p>
         <p><%=announce.date.toLocaleDateString();%></p>
     </div>
     <%});%>

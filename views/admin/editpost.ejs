@@ -1,5 +1,10 @@
 <%- include("../partials/header"); -%>
-
+<script src="https://cdn.tiny.cloud/1/a2o8uiu1r1zkxar9qm494wh4bt2zt5xwi5btgftcusb5zzmf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({
+    selector:'textarea',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+    
+    });</script>
 <h1>Edytuj post</h1>
 <form action="/admin/editpost" method="post" enctype="multipart/form-data">
     <div class="form-group">

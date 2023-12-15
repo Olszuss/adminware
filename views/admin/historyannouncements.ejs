@@ -12,7 +12,7 @@
             <div class="history-container">
                 <div>
                         <h2 style="color:#ff5252"><%=announce.title %></h2>
-                        <p><%=announce.content%></p>
+                        <p><%-announce.content%></p>
                     </div>
                         <% if (announce.active === true) {%>
                             <div class="active-history"><p style="padding: 1rem;margin: 1rem;background-color: #ff5252;">Ogłoszenie aktywne</p></div>

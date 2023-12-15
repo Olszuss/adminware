@@ -13,7 +13,7 @@
             <div>
                 <p><%=posts[0].date.toLocaleDateString()%></p>
                 <h2><%=posts[0].title%></h2>
-                <p><%=posts[0].content.substring(0,800) + " ..."%></p>
+                <p><%-posts[0].content.substring(0,800) + " ..."%></p>
                 <div><a href="/posts/<%=posts[0]._id%>#post"><button class="button">Czytaj więcej</button></a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <img src="<%=post.imageUrl%>" alt="post-image">
             <p><%=post.date.toLocaleDateString()%></p>
             <h3><%=post.title%></h3>
-            <p><%=post.content.substring(0,230) + " ..."%></p>
+            <p><%-post.content.substring(0,230) + " ..."%></p>
             <p><a href="/posts/<%=post._id%>#post">Czytaj więcej</a></p>
         </div>
             <%}%>

@@ -1,5 +1,11 @@
 <%- include("../partials/header"); -%>
-
+<script src="https://cdn.tiny.cloud/1/a2o8uiu1r1zkxar9qm494wh4bt2zt5xwi5btgftcusb5zzmf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({
+    selector:'textarea',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+    
+    });</script>
+    <div class="container">
 <h1>Compose</h1>
 <form action="/compose" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -8,7 +14,7 @@
     </div>
     <div class="form-group">
         <label>Post</label>
-        <textarea name="postArea" class="form-control" cols="30" rows="10" required><% if(content){%><%=content%><%}%></textarea>
+        <textarea name="postArea" class="form-control" cols="30" rows="10"><% if(content){%><%=content%><%}%></textarea>
     </div>
     <div class="form-group">
         <label>Image</label>
@@ -18,5 +24,5 @@
     <button type="submit" class="button">Publish</button>
 
 </form>
-
+</div>
 <%- include("../partials/footer"); -%>

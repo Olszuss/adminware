@@ -16,6 +16,7 @@ body {
 #header {
   position: fixed;
   background-color: #11252e;
+  z-index: 999;
 }
 nav {
   display: flex;
@@ -92,7 +93,6 @@ nav {
   transform: translateY(0);
 }
 #head-box {
-  background-image: url(http://test.adminware.pl/wp-content/uploads/2023/11/cardano-blockchain-platform-1-1024x576.jpg);
   background-size: cover;
   background-position: center;
   height: 44rem;
@@ -133,6 +133,7 @@ nav {
 .main-box {
   margin: auto;
   text-align: center;
+  text-shadow: 3px 3px 2px #11252e;
   & h1 {
     font-size: 2.8rem;
     font-weight: 600;
@@ -193,8 +194,12 @@ nav {
 .read-more-container {
   background-color: #0e313e;
 }
+.blog-image {
+  margin: auto;
+}
 .blog-image > img {
   width: auto;
+  height: 150px;
   max-height: 250px;
   max-width: 100%;
   border-radius: 10px;
@@ -259,6 +264,9 @@ nav {
     margin: 1rem 0rem;
   }
 }
+.services-box > img {
+  filter: invert(100%);
+}
 .services-box:last-child {
   padding-bottom: 5rem;
 }
@@ -267,7 +275,9 @@ nav {
   padding-top: 1rem;
   padding-bottom: 1rem;
   & h2 {
-    font-size: 2.5rem;
+    margin: auto;
+    font-size: 3.5rem;
+    width: 80%;
   }
   & p {
     padding: 1rem;
@@ -347,6 +357,7 @@ form {
   margin-bottom: 5rem;
 }
 .first-post > div {
+  padding: 0.5rem;
   & div {
     text-align: end;
   }
@@ -376,14 +387,22 @@ form {
 }
 .post-header {
   margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  height: 10rem;
   width: 100%;
   background-size: cover;
 }
 .post-header > h2 {
   font-size: 2.2rem;
+}
+.post-content > p:last-child {
+  text-align: end;
+  margin-top: 3rem;
+}
+.post-content > ol {
+  padding-left: 0.5rem;
 }
 #post > div > img {
   width: 100%;
@@ -595,7 +614,7 @@ form {
     height: auto;
   }
   form {
-    width: 30%;
+    width: 80%;
   }
   .post-box {
     width: 30%;

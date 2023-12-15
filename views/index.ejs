@@ -6,7 +6,7 @@
             <% announce.forEach(announce => {%>
 
             <h2><%=announce.title%></h2>
-            <p><%=announce.content%></p>
+            <p><%-announce.content%></p>
             <p><%=announce.date.toLocaleDateString();%></p>
         </div>
         <%});%>
@@ -22,11 +22,11 @@
     <div class="blog-container">
         <div class="blog-box container">
             <div class="blog-image">
-                <img src="<%=post.imageUrl%>" alt="Blog-Image">
+                <img src="<%=post.imageUrl%>" alt="Blog-Image" width="100px" height="100px">
             </div>
             <div class="blog-text">
                 <h2><%=post.title %></h2>
-                <p><%=post.content.substring(0,250) + " ..."%></p>
+                <p><%-post.content.substring(0,250) + " ..."%></p>
                 <a href="/posts/<%=post._id%>#post"><button class="button">Czytaj więcej</button></a>
             </div>
         </div>
@@ -38,11 +38,11 @@
         <div class="blog-container">
             <div class="blog-box container">
                 <div class="blog-image">
-                    <img src="<%=post.imageUrl%>" alt="Blog-Image">
+                    <img src="<%=post.imageUrl%>" alt="Blog-Image" width="100px" height="100px">
                 </div>
                 <div class="blog-text">
                     <h2><%=post.title %></h2>
-                    <p><%=post.content.substring(0,250) + " ..."%></p>
+                    <p><%-post.content.substring(0,250) + " ..."%></p>
                     <a href="/posts/<%=post._id%>#post"><button class="button">Czytaj więcej</button></a>
                 </div>
             </div>
@@ -58,7 +58,7 @@
 <section id="work">
     <div class="work-container">
     <div class="container">
-        <h2>Featured Work</h2>
+        <h2>Czym się zajmujemy?</h2>
         <div class="work-flex">
         <div class="work-box">
             <a href="#"><button class="button-second">Details</button></a>
@@ -73,27 +73,27 @@
 <section id="services">
     <div class="container services-container">
         <div class="services-box">
-            <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img01.svg" alt="">
-            <h3>Lorem, ipsum dolor.</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+            <img src="/virtual.png" alt="virtual" width="96px" height="96px">
+            <h3>Wirtualizacja Serwerów</h3>
+            <p>Zrewolucjonizuj swoją infrastrukturę IT dzięki wirtualizacji serwerów. AdminWare specjalizuje się w tworzeniu elastycznych i efektywnych środowisk wirtualnych, redukując koszty operacyjne i zwiększając skalowalność. Dzięki naszym rozwiązaniom wirtualizacyjnym, zyskasz wydajność, elastyczność i pełną kontrolę nad zasobami serwerowymi.</p>
         </div>
         <div class="services-box">
-         <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img02.svg" alt=""> 
-         <h3>Lorem, ipsum dolor.</h3>               
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+            <img src="/tech.png" alt="virtual" width="96px" height="96px">
+         <h3>Wsparcie Techniczne</h3>               
+         <p>Zapewniamy nieprzerwane wsparcie techniczne, by Twój biznes działał bez zakłóceń. Nasza wykwalifikowana ekipa inżynierów jest gotowa rozwiązywać problemy, monitorować systemy oraz udzielać pomocy w dowolnej chwili. Niezależnie od skomplikowanego wyzwania, możesz polegać na naszym szybkim i profesjonalnym wsparciu.</p>
         </div>
         <div class="services-box">
-            <img src="http://test.adminware.pl/wp-content/themes/neve-fse/assets/img/neve-fse-img03.svg" alt="">
-            <h3>Lorem, ipsum dolor.</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur enim eos earum esse debitis, placeat accusantium magni necessitatibus excepturi fugit.</p>
+            <img src="/it.png" alt="virtual" width="96px" height="96px">
+            <h3>Modernizacja Infrastruktury IT.</h3>
+            <p>Czasami zmiana to klucz do rozwoju. AdminWare oferuje kompleksową modernizację infrastruktury IT, dostosowując ją do najnowszych standardów i wymagań biznesowych. Wdrażamy nowoczesne technologie, optymalizujemy procesy i tworzymy solidne fundamenty pod cyfrową przyszłość Twojej firmy.</p>
         </div>
-    </div>
-    <div class="services-footer container">
-        <h2>Let's work together on your next project</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi labore maiores nemo corrupti id doloremque cumque similique ratione in, nihil atque provident, facilis nobis incidunt deleniti earum rem quia iste.</p>
-        <a href="#"><button class="button">Learn More</button></a>
     </div>
 </section>
+<div class="services-footer container">
+    <h2>Pracujmy razem nad Twoim kolejnym projektem</h2>
+    <p>Razem tworzymy przyszłość. Współpracuj z nami nad Twoim następnym projektem, a doświadczysz profesjonalizmu, innowacji i skutecznej realizacji pomysłów. Osiągnij cele razem z naszym doświadczonym zespołem, gotowym podjąć się każdego wyzwania.</p>
+    <a href="/contact"><button class="button">Napisz wiadomość</button></a>
+</div>
 
 
 <%- include("partials/footer"); -%>
