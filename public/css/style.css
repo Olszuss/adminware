@@ -537,7 +537,7 @@ form {
       }
     }
   }
-  .menu > ul > a:hover {
+  .menu > ul > li>a:hover {
     color: #fa6400;
   }
   .blog-box {

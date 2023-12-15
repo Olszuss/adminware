@@ -3,7 +3,6 @@ const express = require("express");
 const ejs = require("ejs");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const passportLocalMongoose = require("passport-local-mongoose");
 const fileUpload = require("express-fileupload");
 const fs = require("fs")
 const bodyParser = require("body-parser");
@@ -79,7 +78,6 @@ app.get('/contact', (req, res) => {
     res.render('contact', {title:"Kontakt"});
 });
 app.post('/contact', (req, res)=>{
-  console.log(req.body)
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
@@ -110,7 +108,10 @@ app.post('/contact', (req, res)=>{
     if (error) {
       console.log(error);
     } else {
-      res.redirect(`/`);
+      res.render("contact", {
+        title: "Kontakt",
+        message: "Wysłano wiadomość"
+      });
     }
   });
 });
@@ -346,7 +347,7 @@ app.post("/register", function (req,res) {
         console.log(err);
     }
     passport.authenticate("local")(req, res, function() {
-        // redirect user or do whatever you want
+        res.redirect('admin/login');
     });
  });
 });
