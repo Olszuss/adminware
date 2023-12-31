@@ -290,7 +290,11 @@ nav {
     color: #fff;
     font-size: 2rem;
     padding: 1rem;
+    transition: 0.4s;
   }
+}
+.socials > a:hover {
+  color: #fa6400;
 }
 #admin > .container > .socials {
   margin-bottom: 8rem;
